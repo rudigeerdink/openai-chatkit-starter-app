@@ -29,7 +29,7 @@ export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
       level: 1,
     },
   },
-  radius: "medium", // Match the site's 0.5rem border radius
+  radius: "soft", // Match the site's 0.5rem border radius
   // Add other theme options here
   // chatkit.studio/playground to explore config options
 });
