@@ -9,6 +9,7 @@ const csp = [
   "img-src 'self' data: https:",
   "connect-src 'self' https://api.openai.com https://cdn.platform.openai.com",
   "font-src 'self' https:",
+  "frame-src 'self' https://cdn.platform.openai.com",
   `frame-ancestors ${frameAncestors || 'https:'}`,
   "base-uri 'self'",
   "form-action 'self'"
@@ -28,7 +29,7 @@ const nextConfig: NextConfig = {
         { key: 'Content-Security-Policy', value: csp },
         // Do not set X-Frame-Options when using frame-ancestors
         { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-        { key: 'Permissions-Policy', value: 'microphone=(self), camera=(self), clipboard-read=(self), clipboard-write=(self)' },
+        { key: 'Permissions-Policy', value: 'microphone=(self), camera=(self), clipboard-read=*, clipboard-write=*' },
         // Optional: remove if you want the child URL indexed
         { key: 'X-Robots-Tag', value: 'noindex' }
       ]
