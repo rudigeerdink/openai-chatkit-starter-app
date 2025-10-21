@@ -42,9 +42,18 @@ Update `.env.local` with the variables that match your setup.
 - `NEXT_PUBLIC_CHATKIT_WORKFLOW_ID` — This is the ID of the workflow you created in [Agent Builder](https://platform.openai.com/agent-builder), which starts with `wf_...`
 - (optional) `CHATKIT_API_BASE` - This is a customizable base URL for the ChatKit API endpoint
 
+### 4. Configure iframe embedding (optional)
+
+If you want to embed this app in an iframe, configure these additional environment variables:
+
+- `ALLOWED_FRAME_ANCESTORS` — Space-separated list of allowed parent origins that can embed this app in an iframe (e.g., `https://yourdomain.com https://*.yourdomain.com`)
+- `NEXT_PUBLIC_PARENT_ORIGIN` — The exact parent origin for auto-resize functionality (e.g., `https://yourdomain.com`)
+
+**Preview deployments**: If you need to embed preview deployments, include `https://*.vercel.app` in `ALLOWED_FRAME_ANCESTORS`. Otherwise, the app will only allow framing in production.
+
 > Note: if your workflow is using a model requiring organization verification, such as GPT-5, make sure you verify your organization first. Visit your [organization settings](https://platform.openai.com/settings/organization/general) and click on "Verify Organization".
 
-### 4. Run the app
+### 5. Run the app
 
 ```bash
 npm run dev
@@ -52,13 +61,34 @@ npm run dev
 
 Visit `http://localhost:3000` and start chatting. Use the prompts on the start screen to verify your workflow connection, then customize the UI or prompt list in [`lib/config.ts`](lib/config.ts) and [`components/ChatKitPanel.tsx`](components/ChatKitPanel.tsx).
 
-### 5. Deploy your app
+### 6. Deploy your app
 
 ```bash
 npm run build
 ```
 
 Before deploying your app, you need to verify the domain by adding it to the [Domain allowlist](https://platform.openai.com/settings/organization/security/domain-allowlist) on your dashboard.
+
+## Iframe Embedding
+
+This app is configured to be embeddable in iframes with proper security headers:
+
+- **Content Security Policy (CSP)**: Configured with `frame-ancestors` directive based on `ALLOWED_FRAME_ANCESTORS` environment variable
+- **Security Headers**: Includes Referrer-Policy, Permissions-Policy, and X-Robots-Tag headers
+- **Auto-resize**: Automatically adjusts iframe height based on content (requires `NEXT_PUBLIC_PARENT_ORIGIN`)
+
+### Parent Integration
+
+To integrate with the parent page, listen for height messages:
+
+```javascript
+window.addEventListener('message', (event) => {
+  if (event.data.type === 'agent:height') {
+    // Resize iframe to match content height
+    iframe.style.height = event.data.height + 'px';
+  }
+});
+```
 
 ## Customization Tips
 

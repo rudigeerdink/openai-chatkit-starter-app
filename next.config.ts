@@ -1,5 +1,14 @@
 import type { NextConfig } from "next";
 
+const ALLOWED = process.env.ALLOWED_FRAME_ANCESTORS || '';
+const frameAncestors = ALLOWED.split(/\s+/).filter(Boolean).join(' ');
+const csp = [
+  "default-src 'self'",
+  `frame-ancestors ${frameAncestors || 'https:'}`,
+  "base-uri 'self'",
+  "form-action 'self'"
+].join('; ');
+
 const nextConfig: NextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
@@ -7,6 +16,19 @@ const nextConfig: NextConfig = {
     };
     return config;
   },
+  async headers() {
+    return [{
+      source: '/(.*)',
+      headers: [
+        { key: 'Content-Security-Policy', value: csp },
+        // Do not set X-Frame-Options when using frame-ancestors
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        { key: 'Permissions-Policy', value: 'microphone=(self), camera=(self), clipboard-read=(self), clipboard-write=(self)' },
+        // Optional: remove if you want the child URL indexed
+        { key: 'X-Robots-Tag', value: 'noindex' }
+      ]
+    }];
+  }
 };
 
 export default nextConfig;
