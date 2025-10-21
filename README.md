@@ -99,7 +99,7 @@ The app is designed to be responsive and works well on all screen sizes:
 <iframe 
   src="https://your-chatkit-app.vercel.app" 
   width="100%" 
-  height="600px"
+  height="500px"
   frameborder="0"
   style="border-radius: 0.5rem; border: 1px solid #e5e5e5;">
 </iframe>
@@ -111,7 +111,7 @@ The app is designed to be responsive and works well on all screen sizes:
   id="chatkit-iframe"
   src="https://your-chatkit-app.vercel.app" 
   width="100%" 
-  height="500px"
+  height="450px"
   frameborder="0"
   style="border-radius: 0.5rem; border: 1px solid #e5e5e5; min-height: 400px;">
 </iframe>
@@ -136,14 +136,14 @@ window.addEventListener('message', (event) => {
 
 @media (max-width: 768px) {
   .chatkit-container iframe {
-    height: 500px !important; /* Shorter on mobile */
+    height: 450px !important; /* Shorter on mobile */
     border-radius: 0.25rem;
   }
 }
 
 @media (min-width: 769px) {
   .chatkit-container iframe {
-    height: 600px !important; /* Taller on desktop */
+    height: 500px !important; /* Taller on desktop */
   }
 }
 ```
