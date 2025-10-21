@@ -10,7 +10,7 @@ const csp = [
   "connect-src 'self' https://api.openai.com https://cdn.platform.openai.com",
   "font-src 'self' https:",
   "frame-src 'self' https://cdn.platform.openai.com",
-  `frame-ancestors ${frameAncestors || 'https:'}`,
+  `frame-ancestors ${frameAncestors || '*'}`,
   "base-uri 'self'",
   "form-action 'self'"
 ].join('; ');
