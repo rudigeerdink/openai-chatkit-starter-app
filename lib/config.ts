@@ -8,7 +8,7 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "Have a look at this KvK document",
-    prompt: "Provide some additional information on the process";
+    prompt: "Provide some additional information on the process",
     icon: "circle-question",
   },
 ];
