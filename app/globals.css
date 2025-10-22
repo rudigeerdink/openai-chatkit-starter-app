@@ -28,7 +28,17 @@
 }
 
 body {
-  background: var(--background);
+  background: transparent !important;
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* Ensure all main containers are transparent for iframe embedding */
+main, #__next, .app-container {
+  background: transparent !important;
+}
+
+/* Make sure the root element is also transparent */
+html {
+  background: transparent !important;
 }
