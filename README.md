@@ -92,58 +92,103 @@ window.addEventListener('message', (event) => {
 
 ### Responsive Iframe Embedding
 
-The app is designed to be responsive and works well on all screen sizes:
+The app is designed to be fully responsive across all devices and screen sizes:
 
-**Basic iframe (fixed height):**
+**Basic responsive iframe:**
 ```html
 <iframe 
   src="https://your-chatkit-app.vercel.app" 
   width="100%" 
-  height="500px"
+  height="400px"
   frameborder="0"
   style="border-radius: 0.5rem; border: 1px solid #e5e5e5;">
 </iframe>
 ```
 
-**Responsive iframe with auto-resize:**
+**Advanced responsive iframe with auto-resize:**
 ```html
 <iframe 
   id="chatkit-iframe"
   src="https://your-chatkit-app.vercel.app" 
   width="100%" 
-  height="450px"
+  height="400px"
   frameborder="0"
-  style="border-radius: 0.5rem; border: 1px solid #e5e5e5; min-height: 400px;">
+  style="border-radius: 0.5rem; border: 1px solid #e5e5e5; min-height: 350px;">
 </iframe>
 
 <script>
 window.addEventListener('message', (event) => {
   if (event.data.type === 'agent:height') {
     const iframe = document.getElementById('chatkit-iframe');
-    iframe.style.height = Math.max(400, event.data.height) + 'px';
+    iframe.style.height = Math.max(350, event.data.height) + 'px';
   }
 });
 </script>
 ```
 
-**Mobile-optimized CSS:**
+**Comprehensive responsive CSS for all devices:**
 ```css
 .chatkit-container {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
+  position: relative;
 }
 
-@media (max-width: 768px) {
+.chatkit-container iframe {
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  transition: height 0.3s ease;
+}
+
+/* Extra small devices (phones, 320px and up) */
+@media (max-width: 480px) {
   .chatkit-container iframe {
-    height: 450px !important; /* Shorter on mobile */
+    height: 400px !important;
     border-radius: 0.25rem;
   }
 }
 
-@media (min-width: 769px) {
+/* Small devices (landscape phones, 481px and up) */
+@media (min-width: 481px) and (max-width: 640px) {
   .chatkit-container iframe {
-    height: 500px !important; /* Taller on desktop */
+    height: 450px !important;
+  }
+}
+
+/* Medium devices (tablets, 641px and up) */
+@media (min-width: 641px) and (max-width: 768px) {
+  .chatkit-container iframe {
+    height: 500px !important;
+  }
+}
+
+/* Large devices (desktops, 769px and up) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .chatkit-container iframe {
+    height: 550px !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1025px and up) */
+@media (min-width: 1025px) {
+  .chatkit-container iframe {
+    height: 600px !important;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  .chatkit-container iframe {
+    height: 350px !important;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .chatkit-container iframe {
+    image-rendering: -webkit-optimize-contrast;
   }
 }
 ```
