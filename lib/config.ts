@@ -14,7 +14,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What is a KvK registration report?",
     prompt: "What is a KvK registration report and what information does it contain?",
-    icon: "file-text",
+    icon: "document",
   },
 ];
 
