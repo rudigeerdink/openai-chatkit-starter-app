@@ -11,6 +11,11 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
     prompt: "Provide some additional information on the process",
     icon: "circle-question",
   },
+  {
+    label: "What is a KvK registration report?",
+    prompt: "What is a KvK registration report and what information does it contain?",
+    icon: "file-text",
+  },
 ];
 
 export const PLACEHOLDER_INPUT = "Upload your document...";
