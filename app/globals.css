@@ -42,3 +42,33 @@ main, #__next, .app-container {
 html {
   background: transparent !important;
 }
+
+/* Override ChatKit loading state background */
+openai-chatkit {
+  --chatkit-background: transparent !important;
+  --chatkit-loading-background: transparent !important;
+}
+
+/* Dark theme loading state */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a1a !important;
+  }
+  
+  openai-chatkit {
+    --chatkit-background: #1a1a1a !important;
+    --chatkit-loading-background: #1a1a1a !important;
+  }
+}
+
+/* Light theme loading state */
+@media (prefers-color-scheme: light) {
+  body {
+    background: #ffffff !important;
+  }
+  
+  openai-chatkit {
+    --chatkit-background: #ffffff !important;
+    --chatkit-loading-background: #ffffff !important;
+  }
+}

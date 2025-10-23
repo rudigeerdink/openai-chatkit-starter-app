@@ -38,3 +38,6 @@ export const getThemeConfig = (theme: ColorScheme): ThemeOption => ({
   // Add other theme options here
   // chatkit.studio/playground to explore config options
 });
+
+// Loading state configuration
+export const LOADING_MESSAGE = "Loading KvK document analyzer...";
