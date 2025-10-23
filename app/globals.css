@@ -49,6 +49,20 @@ openai-chatkit {
   --chatkit-loading-background: transparent !important;
 }
 
+/* Override any default blue backgrounds */
+* {
+  background-color: transparent !important;
+}
+
+/* Specific overrides for ChatKit components */
+openai-chatkit,
+openai-chatkit *,
+[data-chatkit],
+[data-chatkit] * {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
 /* Dark theme loading state */
 @media (prefers-color-scheme: dark) {
   body {
@@ -58,6 +72,20 @@ openai-chatkit {
   openai-chatkit {
     --chatkit-background: #212121 !important;
     --chatkit-loading-background: #212121 !important;
+  }
+  
+  /* Override any blue loading states */
+  * {
+    background-color: #212121 !important;
+    background: #212121 !important;
+  }
+  
+  openai-chatkit,
+  openai-chatkit *,
+  [data-chatkit],
+  [data-chatkit] * {
+    background-color: #212121 !important;
+    background: #212121 !important;
   }
 }
 
