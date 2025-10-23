@@ -52,12 +52,12 @@ openai-chatkit {
 /* Dark theme loading state */
 @media (prefers-color-scheme: dark) {
   body {
-    background: #1a1a1a !important;
+    background: #212121 !important;
   }
   
   openai-chatkit {
-    --chatkit-background: #1a1a1a !important;
-    --chatkit-loading-background: #1a1a1a !important;
+    --chatkit-background: #212121 !important;
+    --chatkit-loading-background: #212121 !important;
   }
 }
 
